@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="title" content="MammoFlow: Multiview Mammogram Synthesis with Anatomically Consistent Flow Matching">
+  <meta name="description" content="MammoFlow synthesizes anatomically consistent paired CC and MLO mammograms with flow matching and an EMD-driven multiview tissue consistency loss.">
+  <meta name="keywords" content="MammoFlow, mammography, multiview synthesis, flow matching, medical image generation, MICCAI 2026">
+  <meta name="author" content="Yuexi Du, Leya Barrientos, Laura Sheiman, John Lewin, Hemant Tagare, Nicha C. Dvornek">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Yale University">
+  <meta property="og:title" content="MammoFlow: Multiview Mammogram Synthesis with Anatomically Consistent Flow Matching">
+  <meta property="og:description" content="Anatomically consistent multiview mammogram synthesis with flow matching and EMD tissue alignment.">
+  <meta property="og:url" content="https://xypb.github.io/MammoFlow/">
+  <meta property="og:image" content="https://xypb.github.io/MammoFlow/static/images/teaser.png">
+  <meta property="og:image:alt" content="MammoFlow multiview mammography teaser">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MammoFlow">
+  <meta name="twitter:description" content="Multiview mammogram synthesis with anatomically consistent flow matching.">
+  <meta name="twitter:image" content="https://xypb.github.io/MammoFlow/static/images/teaser.png">
+  <meta name="citation_title" content="MammoFlow: Multiview Mammogram Synthesis with Anatomically Consistent Flow Matching">
+  <meta name="citation_author" content="Du, Yuexi">
+  <meta name="citation_author" content="Barrientos, Leya">
+  <meta name="citation_author" content="Sheiman, Laura">
+  <meta name="citation_author" content="Lewin, John">
+  <meta name="citation_author" content="Tagare, Hemant">
+  <meta name="citation_author" content="Dvornek, Nicha C.">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_conference_title" content="MICCAI 2026">
+  <meta name="citation_pdf_url" content="https://xypb.github.io/MammoFlow/#paper-coming-soon">
+  <meta name="theme-color" content="#0f766e">
+  <title>MammoFlow | MICCAI 2026</title>
+  <link rel="stylesheet" href="static/css/index.css">
+  <script defer src="static/js/index.js"></script>
+</head>
+<body>
+  <header class="site-header" data-header>
+    <a class="brand" href="#top" aria-label="MammoFlow home">
+      <span class="brand-mark" aria-hidden="true">MF</span>
+      <span>MammoFlow</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" data-nav-toggle>
+      <span></span>
+      <span></span>
+    </button>
+    <nav class="site-nav" data-nav>
+      <a href="#abstract">Abstract</a>
+      <a href="#method">Method</a>
+      <a href="#results">Results</a>
+      <a href="#code">Code</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero section-wrap">
+      <div class="hero-copy">
+        <p class="venue">MICCAI 2026</p>
+        <h1>MammoFlow: Multiview Mammogram Synthesis with Anatomically Consistent Flow Matching</h1>
+        <p class="authors">Yuexi Du, Leya Barrientos, Laura Sheiman, John Lewin, Hemant Tagare, Nicha C. Dvornek</p>
+        <p class="affiliation">Department of Biomedical Engineering and Department of Radiology &amp; Biomedical Imaging, Yale University</p>
+        <p class="hero-summary">MammoFlow generates paired CC and MLO mammograms from noise while preserving cross-view tissue correspondence through an EMD-driven anatomical consistency loss.</p>
+        <div class="button-row" aria-label="Project links">
+          <a id="paper-coming-soon" class="button button-disabled" href="#paper-coming-soon" aria-disabled="true">Paper coming soon</a>
+          <a class="button button-primary" href="https://github.com/XYPB/MammoFlow">Code</a>
+          <a class="button button-secondary" href="#citation">Citation</a>
+        </div>
+      </div>
+      <figure class="hero-media media-frame">
+        <img src="static/images/teaser.png" alt="MammoFlow teaser showing paired multiview mammograms and AP-axis tissue correspondence">
+        <figcaption>Multiview mammography projects a shared breast volume into complementary CC and MLO views.</figcaption>
+      </figure>
+    </section>
+
+    <section id="abstract" class="content-band">
+      <div class="section-wrap narrow">
+        <h2>Abstract</h2>
+        <p>Multiview mammography relies on paired craniocaudal (CC) and mediolateral oblique (MLO) views to provide complementary projections of a 3D breast volume, enabling precise anomaly localization. However, acquiring high-quality, balanced datasets remains challenging for deep learning applications.</p>
+        <p>We propose MammoFlow, a method for synthesizing multiview mammograms by leveraging the inherent geometric relationship between CC and MLO views. An alignment module searches a compact affine transformation subspace to establish anatomical correspondence, and a pixel-space Earth Mover's Distance (EMD) loss encourages generated pairs to share physically plausible anteroposterior tissue distributions.</p>
+        <p>Integrated into a pretrained flow matching model, MammoFlow produces high-fidelity paired mammograms, passes expert radiologist evaluation, and improves downstream classification AUC by up to 5% when synthetic malignant pairs are added to training.</p>
+      </div>
+    </section>
+
+    <section id="method" class="section-wrap split-section">
+      <div class="section-heading">
+        <h2>Method</h2>
+        <p>Training uses real paired views to compute an anatomical alignment prior. Inference only requires Gaussian noise and a prompt.</p>
+      </div>
+      <figure class="media-frame method-frame">
+        <img src="static/images/method.png" alt="MammoFlow pipeline with conditional rectified flow, EMD-driven alignment, and temporal loss scheduling">
+      </figure>
+      <div class="method-grid">
+        <article>
+          <h3>Conditional flow matching</h3>
+          <p>Paired CC/MLO mammograms are concatenated and encoded into a latent path between image data and Gaussian noise. The model predicts the velocity toward clean mammogram pairs.</p>
+        </article>
+        <article>
+          <h3>EMD-driven alignment</h3>
+          <p>A compact search over MLO rotation and horizontal translation aligns AP-axis tissue distributions with the CC view while accounting for pectoral masking.</p>
+        </article>
+        <article>
+          <h3>Multiview regularization</h3>
+          <p>A differentiable EMD loss penalizes cross-view tissue displacement in decoded one-step reconstructions, with a cosine schedule that emphasizes low-noise structure.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="results" class="content-band results-band">
+      <div class="section-wrap">
+        <div class="section-heading">
+          <h2>Results</h2>
+          <p>MammoFlow improves both image fidelity and multiview correspondence across CSAW, VinDr-Mammo, and RSNA.</p>
+        </div>
+
+        <div class="result-highlights" aria-label="Main result highlights">
+          <article>
+            <strong>1.08%</strong>
+            <span>CSAW relative EMD difference</span>
+          </article>
+          <article>
+            <strong>97.5%</strong>
+            <span>expert-rated pairing success</span>
+          </article>
+          <article>
+            <strong>+5%</strong>
+            <span>downstream CSAW AUC gain</span>
+          </article>
+        </div>
+
+        <div class="table-panel">
+          <h3>Image Generation And Multiview Correspondence</h3>
+          <div class="table-scroll" tabindex="0">
+            <table class="results-table">
+              <thead>
+                <tr>
+                  <th rowspan="2">Method</th>
+                  <th colspan="4">CSAW</th>
+                  <th colspan="4">VinDr</th>
+                  <th colspan="4">RSNA</th>
+                </tr>
+                <tr>
+                  <th>FID</th><th>FrD</th><th>Delta EMD</th><th>Delta JSD</th>
+                  <th>FID</th><th>FrD</th><th>Delta EMD</th><th>Delta JSD</th>
+                  <th>FID</th><th>FrD</th><th>Delta EMD</th><th>Delta JSD</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><th>GT oracle</th><td>8.89</td><td>3.02</td><td>-</td><td>-</td><td>8.36</td><td>5.42</td><td>-</td><td>-</td><td>9.76</td><td>12.0</td><td>-</td><td>-</td></tr>
+                <tr><th>CA3D-Diff*</th><td>63.3</td><td>8.72</td><td>14.12</td><td>16.89</td><td>70.5</td><td>6.72</td><td>173.83</td><td>498.86</td><td>64.5</td><td>8.73</td><td>37.20</td><td>90.98</td></tr>
+                <tr><th>Mammo-RGB</th><td>88.6</td><td>14.9</td><td>60.67</td><td>188.53</td><td>102.8</td><td>21.5</td><td>33.01</td><td>49.57</td><td>148.6</td><td>15.1</td><td>15.43</td><td>20.98</td></tr>
+                <tr><th>Vanilla</th><td>73.4</td><td>17.7</td><td>10.82</td><td>68.52</td><td>70.5</td><td>48.8</td><td>18.37</td><td>54.61</td><td>66.3</td><td>16.4</td><td>7.75</td><td>28.86</td></tr>
+                <tr class="ours"><th>MammoFlow</th><td>53.3</td><td>6.60</td><td>1.08</td><td>9.57</td><td>67.5</td><td>12.4</td><td>4.19</td><td>15.22</td><td>65.4</td><td>12.7</td><td>2.73</td><td>33.48</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="table-note">*CA3D-Diff requires a ground-truth reference image. Lower is better for FID, FrD, Delta EMD, and Delta JSD.</p>
+        </div>
+
+        <div class="chart-grid">
+          <article class="chart-card">
+            <h3>Downstream Classification AUC</h3>
+            <div class="bar-group" aria-label="Classification AUC by training data">
+              <div class="bar-row"><span>CSAW real</span><i style="--value:74.52%"></i><b>.7452</b></div>
+              <div class="bar-row accent"><span>CSAW + 5k synth.</span><i style="--value:79.04%"></i><b>.7904</b></div>
+              <div class="bar-row"><span>VinDr real</span><i style="--value:77.75%"></i><b>.7775</b></div>
+              <div class="bar-row accent"><span>VinDr + 5k synth.</span><i style="--value:81.96%"></i><b>.8196</b></div>
+              <div class="bar-row"><span>RSNA real</span><i style="--value:76.76%"></i><b>.7676</b></div>
+              <div class="bar-row accent"><span>RSNA + 5k synth.</span><i style="--value:78.22%"></i><b>.7822</b></div>
+            </div>
+          </article>
+          <article class="chart-card">
+            <h3>Reader Study</h3>
+            <div class="reader-grid">
+              <div><span>Authenticity</span><strong>37.5 <small>&plusmn; 12.5</small></strong><p>MammoFlow images rated as real</p></div>
+              <div><span>Pairing</span><strong>97.5 <small>&plusmn; 2.5</small></strong><p>Generated pairs judged anatomically paired</p></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="qualitative" class="section-wrap qualitative-section">
+      <div class="section-heading">
+        <h2>Qualitative Results</h2>
+        <p>Generated views preserve aligned AP-axis tissue distributions and reduce cross-view structure mismatch relative to baselines.</p>
+      </div>
+      <figure class="media-frame wide-frame">
+        <img src="static/images/visualization.png" alt="Qualitative comparison of GT, CA3D-Diff, Mammo-RGB, Vanilla, and MammoFlow samples with AP-axis distribution plots">
+      </figure>
+    </section>
+
+    <section id="code" class="content-band code-band">
+      <div class="section-wrap two-column">
+        <div>
+          <h2>Code Release</h2>
+          <p>The repository contains data preprocessing, SD3.5 multiview training, generation inference, alignment evaluation, and downstream classification scripts.</p>
+          <p class="notice">Research use only. MammoFlow is not a medical device and must not be used for clinical diagnosis or treatment decisions.</p>
+        </div>
+        <div class="command-card">
+          <pre><code>git clone https://github.com/XYPB/MammoFlow.git
+cd MammoFlow
+conda env create -f environment.yml
+conda activate mammoflow</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="citation" class="section-wrap citation-section">
+      <h2>Citation</h2>
+      <div class="citation-card">
+        <button class="copy-button" type="button" data-copy-citation>Copy</button>
+        <pre><code>@inproceedings{mammoflow2026,
+  title     = {MammoFlow: Multiview Mammogram Synthesis with Anatomically Consistent Flow Matching},
+  author    = {Du, Yuexi and Barrientos, Leya and Sheiman, Laura and Lewin, John and Tagare, Hemant and Dvornek, Nicha C.},
+  booktitle = {International Conference on Medical Image Computing and Computer Assisted Intervention},
+  year      = {2026}
+}</code></pre>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>MammoFlow | Yale University | MICCAI 2026</p>
+  </footer>
+</body>
+</html>
