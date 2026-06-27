@@ -114,6 +114,48 @@ h3 { font-size: 1rem; font-weight: 700; line-height: 1.35; margin-bottom: .6rem;
 .hero-media { border-top: 1px solid var(--line); padding-top: 1.5rem; }
 .hero-media img, .method-frame img, .wide-frame img { background: #fff; margin-inline: auto; }
 figcaption { color: var(--muted); font-size: .84rem; line-height: 1.5; padding: .8rem 0 0; text-align: left; }
+.teaser-explanation {
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: minmax(0, .55fr) minmax(0, 1.45fr);
+  padding-top: 1.5rem;
+}
+.teaser-explanation h2 { font-size: 1.25rem; margin-bottom: .45rem; }
+.teaser-explanation > div > p { color: var(--muted); font-size: .9rem; margin: 0; }
+.ap-steps {
+  counter-reset: ap-step;
+  display: grid;
+  gap: 1.2rem 1.75rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ap-steps li {
+  color: #4f5b66;
+  counter-increment: ap-step;
+  font-size: .9rem;
+  padding-left: 2.15rem;
+  position: relative;
+}
+.ap-steps li::before {
+  align-items: center;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  color: var(--accent);
+  content: counter(ap-step);
+  display: flex;
+  font-size: .75rem;
+  font-weight: 700;
+  height: 1.5rem;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  top: .05rem;
+  width: 1.5rem;
+}
+.ap-steps strong { color: #273543; display: block; margin-bottom: .15rem; }
 .section-heading { margin-bottom: 1.75rem; max-width: 780px; }
 .section-heading p, .narrow p, .two-column p { color: #4f5b66; font-size: 1rem; }
 .split-section { padding-bottom: 4.5rem; }
@@ -243,7 +285,7 @@ code {
 .site-footer p { margin: 0; }
 
 @media (max-width: 920px) {
-  .two-column, .chart-grid { grid-template-columns: 1fr; }
+  .two-column, .chart-grid, .teaser-explanation { grid-template-columns: 1fr; }
   .method-grid { gap: 1.25rem; grid-template-columns: 1fr; }
 }
 
@@ -270,6 +312,7 @@ code {
   .hero { gap: 2rem; padding-bottom: 3rem; padding-top: 3.25rem; }
   .button-row { align-items: stretch; flex-direction: column; }
   .button { width: 100%; }
+  .ap-steps { grid-template-columns: 1fr; }
   .result-highlights { grid-template-columns: 1fr; }
   .result-highlights article + article { border-left: 0; border-top: 1px solid var(--line); }
   .bar-row { gap: .3rem; grid-template-columns: 1fr; }

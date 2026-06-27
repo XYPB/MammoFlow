@@ -71,6 +71,18 @@
         <img src="static/images/teaser.png" alt="MammoFlow teaser showing paired multiview mammograms and AP-axis tissue correspondence">
         <figcaption>Multiview mammography projects a shared breast volume into complementary CC and MLO views.</figcaption>
       </figure>
+      <div class="teaser-explanation">
+        <div>
+          <h2>How the AP-axis tissue distribution is computed</h2>
+          <p>Each profile summarizes relative tissue mass from the chest wall to the nipple.</p>
+        </div>
+        <ol class="ap-steps">
+          <li><strong>Preprocess the views.</strong> Crop each image to the breast region and mask the pectoral muscle in the MLO view so it does not bias the tissue profile.</li>
+          <li><strong>Align the AP axes.</strong> Keep the CC view fixed while testing MLO rotations and horizontal translations that orient its AP axis horizontally.</li>
+          <li><strong>Project to one dimension.</strong> At every AP position, sum pixel intensities vertically, normalize by total image intensity, and apply 1D Gaussian smoothing for spatial relaxation.</li>
+          <li><strong>Compare the profiles.</strong> EMD = Σᵢ |P[i] − Q[i]| compares the cumulative CC and MLO distributions; the transform with the lowest EMD is selected.</li>
+        </ol>
+      </div>
     </section>
 
     <section id="abstract" class="content-band">
