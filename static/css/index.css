@@ -186,6 +186,26 @@ figcaption { color: var(--muted); font-size: .84rem; line-height: 1.5; padding: 
 .reader-grid p { color: var(--muted); font-size: .86rem; margin: .6rem 0 0; }
 .qualitative-section { padding-top: 4.5rem; }
 .wide-frame { border-bottom: 1px solid var(--line); border-top: 1px solid var(--line); padding: 1.25rem 0; }
+.qualitative-notes {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 1.5rem;
+}
+.qualitative-note {
+  border-left: 3px solid var(--callout);
+  color: #4f5b66;
+  font-size: .94rem;
+  margin: 0;
+  padding-left: 1rem;
+}
+.qualitative-note strong {
+  color: var(--callout);
+  display: block;
+  margin-bottom: .25rem;
+}
+.note-orange { --callout: #b64f13; }
+.note-purple { --callout: #7b3fa4; }
 .two-column { align-items: start; display: grid; gap: 2.5rem; grid-template-columns: .9fr 1.1fr; }
 .notice {
   border-left: 2px solid var(--warning);
@@ -255,6 +275,7 @@ code {
   .bar-row { gap: .3rem; grid-template-columns: 1fr; }
   .bar-row b { text-align: left; }
   .reader-grid { grid-template-columns: 1fr; }
+  .qualitative-notes { grid-template-columns: 1fr; }
   .reader-grid div + div { border-left: 0; border-top: 1px solid var(--line); }
   .citation-card pre { padding-right: 0; padding-top: 2.8rem; }
 }

@@ -183,11 +183,15 @@
     <section id="qualitative" class="section-wrap qualitative-section">
       <div class="section-heading">
         <h2>Qualitative Results</h2>
-        <p>Generated views preserve aligned AP-axis tissue distributions and reduce cross-view structure mismatch relative to baselines.</p>
+        <p>Rows 1–2 compare generated CC/MLO pairs, while the final row shows the aligned views and AP-axis tissue distributions for Case 2.</p>
       </div>
       <figure class="media-frame wide-frame">
-        <img src="static/images/visualization.png" alt="Qualitative comparison of GT, CA3D-Diff, Mammo-RGB, Vanilla, and MammoFlow samples with AP-axis distribution plots">
+        <img src="static/images/visualization.png" alt="Qualitative comparison of ground truth, CA3D-Diff, Mammo-RGB, and MammoFlow samples with AP-axis distribution plots">
       </figure>
+      <div class="qualitative-notes" aria-label="Qualitative figure annotations">
+        <p class="qualitative-note note-orange"><strong>Orange arrows: cross-view artifacts.</strong> Baselines may reproduce contours from the other view or place high-density tissue in only one projection, indicating mismatched anatomy across the CC/MLO pair.</p>
+        <p class="qualitative-note note-purple"><strong>Purple arrows: tissue-distribution mismatch.</strong> Baseline AP-axis profiles show clear density differences between views, whereas MammoFlow more closely follows the native mass distribution of the ground-truth pair.</p>
+      </div>
     </section>
 
     <section id="code" class="content-band code-band">
