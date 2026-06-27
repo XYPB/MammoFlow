@@ -56,15 +56,10 @@ h3 { font-size: 1rem; font-weight: 700; line-height: 1.35; margin-bottom: .6rem;
 }
 .brand { align-items: center; display: inline-flex; font-size: .95rem; font-weight: 700; gap: .65rem; }
 .brand-mark {
-  align-items: center;
-  border: 1px solid var(--accent);
-  color: var(--accent);
-  display: inline-flex;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: .74rem;
-  height: 30px;
-  justify-content: center;
-  width: 30px;
+  display: block;
+  height: 32px;
+  object-fit: contain;
+  width: 32px;
 }
 .site-nav { align-items: center; display: flex; gap: 1.4rem; }
 .site-nav a { color: #4d5965; font-size: .9rem; font-weight: 600; }

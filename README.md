@@ -1,4 +1,8 @@
-# MammoFlow Project Page
+<p align="center">
+  <img src="static/images/mammoflow-icon.png" alt="MammoFlow icon" width="160">
+</p>
+
+<h1 align="center">MammoFlow Project Page</h1>
 
 Static GitHub Pages branch for:
 
