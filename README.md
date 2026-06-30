@@ -8,4 +8,6 @@ Static GitHub Pages branch for:
 
 **MammoFlow: Multiview Mammogram Synthesis with Anatomically Consistent Flow Matching**
 
-The arXiv/paper link is intentionally left as a coming-soon placeholder until the public link is available.
+Paper: [arXiv:2606.28537](https://arxiv.org/abs/2606.28537)
+
+Code: [github.com/XYPB/MammoFlow](https://github.com/XYPB/MammoFlow)
