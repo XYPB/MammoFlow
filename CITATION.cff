@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+title: MammoFlow
+type: software
+message: "If you use MammoFlow, please cite the MICCAI 2026 paper."
+authors:
+  - family-names: Du
+    given-names: Yuexi
+repository-code: "https://github.com/XYPB/MammoFlow"
+license: MIT
+abstract: "Code release for MammoFlow, a multiview mammography generation framework."
