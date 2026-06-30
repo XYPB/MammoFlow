@@ -6,7 +6,7 @@
   <meta name="title" content="MammoFlow: Multiview Mammogram Synthesis with Anatomically Consistent Flow Matching">
   <meta name="description" content="MammoFlow synthesizes anatomically consistent paired CC and MLO mammograms with flow matching and an EMD-driven multiview tissue consistency loss.">
   <meta name="keywords" content="MammoFlow, mammography, multiview synthesis, flow matching, medical image generation, MICCAI 2026">
-  <meta name="author" content="Yuexi Du, Leya Barrientos, Laura Sheiman, John Lewin, Hemant Tagare, Nicha C. Dvornek">
+  <meta name="author" content="Yuexi Du, Leya Barrientos, Laura Sheiman, John Lewin, Hemant D. Tagare, Nicha C. Dvornek">
   <meta name="robots" content="index, follow">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Yale University">
@@ -24,7 +24,7 @@
   <meta name="citation_author" content="Barrientos, Leya">
   <meta name="citation_author" content="Sheiman, Laura">
   <meta name="citation_author" content="Lewin, John">
-  <meta name="citation_author" content="Tagare, Hemant">
+  <meta name="citation_author" content="Tagare, Hemant D.">
   <meta name="citation_author" content="Dvornek, Nicha C.">
   <meta name="citation_publication_date" content="2026">
   <meta name="citation_conference_title" content="MICCAI 2026">
@@ -58,7 +58,7 @@
       <div class="hero-copy">
         <p class="venue">MICCAI 2026</p>
         <h1>MammoFlow: Multiview Mammogram Synthesis with Anatomically Consistent Flow Matching</h1>
-        <p class="authors">Yuexi Du, Leya Barrientos, Laura Sheiman, John Lewin, Hemant Tagare, Nicha C. Dvornek</p>
+        <p class="authors"><a href="https://xypb.github.io/">Yuexi Du</a>, Leya Barrientos, Laura Sheiman, John Lewin, Hemant D. Tagare, <a href="https://www.hellonicha.com/">Nicha C. Dvornek</a></p>
         <p class="affiliation">Department of Biomedical Engineering and Department of Radiology &amp; Biomedical Imaging, Yale University</p>
         <p class="hero-summary">MammoFlow generates paired CC and MLO mammograms from noise while preserving cross-view tissue correspondence through an EMD-driven anatomical consistency loss.</p>
         <div class="button-row" aria-label="Project links">
@@ -172,13 +172,14 @@
         <div class="chart-grid">
           <article class="chart-card">
             <h3>Downstream Classification AUC</h3>
-            <div class="bar-group" aria-label="Classification AUC by training data">
-              <div class="bar-row"><span>CSAW real</span><i style="--value:74.52%"></i><b>.7452</b></div>
-              <div class="bar-row accent"><span>CSAW + 5k synth.</span><i style="--value:79.04%"></i><b>.7904</b></div>
-              <div class="bar-row"><span>VinDr real</span><i style="--value:77.75%"></i><b>.7775</b></div>
-              <div class="bar-row accent"><span>VinDr + 5k synth.</span><i style="--value:81.96%"></i><b>.8196</b></div>
-              <div class="bar-row"><span>RSNA real</span><i style="--value:76.76%"></i><b>.7676</b></div>
-              <div class="bar-row accent"><span>RSNA + 5k synth.</span><i style="--value:78.22%"></i><b>.7822</b></div>
+            <div class="bar-group" aria-label="Classification AUC by training data; chart axis spans 60 to 100 percent">
+              <div class="bar-row"><span>CSAW real</span><i style="--value:36.30%"></i><b>.7452</b></div>
+              <div class="bar-row accent"><span>CSAW + 5k synth.</span><i style="--value:47.60%"></i><b>.7904</b></div>
+              <div class="bar-row"><span>VinDr real</span><i style="--value:44.38%"></i><b>.7775</b></div>
+              <div class="bar-row accent"><span>VinDr + 5k synth.</span><i style="--value:54.90%"></i><b>.8196</b></div>
+              <div class="bar-row"><span>RSNA real</span><i style="--value:41.90%"></i><b>.7676</b></div>
+              <div class="bar-row accent"><span>RSNA + 5k synth.</span><i style="--value:45.55%"></i><b>.7822</b></div>
+              <div class="bar-axis" aria-hidden="true"><span>60%</span><span>100%</span></div>
             </div>
           </article>
           <article class="chart-card">
@@ -229,7 +230,7 @@ conda activate mammoflow</code></pre>
         <button class="copy-button" type="button" data-copy-citation>Copy</button>
         <pre><code>@inproceedings{mammoflow2026,
   title     = {MammoFlow: Multiview Mammogram Synthesis with Anatomically Consistent Flow Matching},
-  author    = {Du, Yuexi and Barrientos, Leya and Sheiman, Laura and Lewin, John and Tagare, Hemant and Dvornek, Nicha C.},
+  author    = {Du, Yuexi and Barrientos, Leya and Sheiman, Laura and Lewin, John and Tagare, Hemant D. and Dvornek, Nicha C.},
   booktitle = {International Conference on Medical Image Computing and Computer Assisted Intervention},
   year      = {2026},
   eprint    = {2606.28537},
